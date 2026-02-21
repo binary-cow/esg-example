@@ -1,4 +1,5 @@
 # ESG Report Data Extraction Pipeline
+<img width="2788" height="3479" alt="sk_hynix_esg_quality_dashboard" src="https://github.com/user-attachments/assets/1b7155dc-61f0-4a56-9657-538830bd7a89" />
 
 An end-to-end pipeline that automatically extracts, validates, and assesses
 structured ESG (Environmental, Social, Governance) metrics from Korean

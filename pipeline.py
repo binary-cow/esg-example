@@ -4,13 +4,6 @@ Korean ESG Disclosure Data Extraction & Quality Assessment Pipeline
 ===================================================================
 Extracts structured ESG metrics from Korean PDF sustainability reports,
 validates data quality, and generates a comprehensive quality dashboard.
-
-Usage:
-    python esg_pipeline.py --demo                        # Mock data demo
-    python esg_pipeline.py --pdf report.pdf --api_key sk-...  # Real PDF
-
-Requirements:
-    pip install pdfplumber openai pandas numpy matplotlib
 """
 
 import argparse
@@ -26,7 +19,6 @@ from extractor.init_extractor import create_extractor
 
 # Main pipeline function
 def run_pipeline(pdf_path=None, 
-                 api_key=None, 
                  demo=False,
                  company="KOREAN CORPORATION",
                  save_dir="./esg_quality_dashboard"
@@ -85,7 +77,6 @@ if __name__ == "__main__":
     ap.add_argument("--backend", default="ollama",
                     choices=["ollama","hf","groq","together","huggingface","openai"])
     ap.add_argument("--model", type=str, default=None)
-    ap.add_argument("--api_key", type=str)
     ap.add_argument("--demo", action="store_true")
     ap.add_argument("--company", default="Samsung Electronics")
     ap.add_argument("--output_dir", default="./esg_quality_dashboard")
@@ -95,5 +86,5 @@ if __name__ == "__main__":
         print("No PDF specified — running demo mode.\n")
         args.demo = True
 
-    run_pipeline(args.pdf, args.api_key, args.demo,
+    run_pipeline(args.pdf, None, args.demo,
                  args.company, args.output_dir)

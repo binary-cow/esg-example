@@ -17,12 +17,13 @@ import argparse
 import os
 
 from dashboard import Dashboard
-from extractor.init_extractor import ESGExtractor, ESGExtractorOllama
+# from extractor.init_extractor import ESGExtractor, ESGExtractorOllama
 from parser import PDFParser
 from qualityassessor import QualityAssessor
 from validator import Validator
 from mock import generate_mock_data
 from extractor.init_extractor import create_extractor
+import pandas as pd
 
 # Main pipeline function
 def run_pipeline(pdf_path=None, 
@@ -58,17 +59,23 @@ def run_pipeline(pdf_path=None,
 
     # 4: Dashboard
     print("\n[4/4] Rendering dashboard…")
-    
+
     ## if dashboard file already exists, add suffix to avoid overwrite
     dashboard_path = os.path.join(save_dir, f"{company}_esg_quality_dashboard.png")
     suffix = 1
     while os.path.exists(dashboard_path):
         dashboard_path = os.path.join(save_dir, f"{company}_esg_quality_dashboard_{suffix}.png")
         suffix += 1
-    Dashboard(df, scores, company).render(save_path=dashboard_path)
+   # df = pd.DataFrame(df)
+    Dashboard().render(validated_items=df, scores=scores, company=company, save_path=dashboard_path)
 
     # CSV export
     csv = os.path.join(save_dir, f"{company}_esg_data.csv")
+    suffix = 1
+    while os.path.exists(csv):
+        csv = os.path.join(save_dir, f"{company}_esg_data_{suffix}.csv")
+        suffix += 1
+    df = pd.DataFrame(df)
     df.to_csv(csv, index=False, encoding="utf-8-sig")
     print(f"  ✓ CSV → {csv}")
 

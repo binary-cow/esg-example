@@ -1,4 +1,11 @@
-from . import ESGExtractorOllama, ESGExtractor
+from extractor.ollama_extractor import ESGExtractorOllama
+from extractor.openai_extractor import ESGExtractor
+
+# from abc import ABC, abstractmethod
+# from esg_standards import ESG_METRICS
+# import json
+# from typing import List, Dict, Optional
+
 
 def create_extractor(backend: str = "ollama", **kwargs):
     """

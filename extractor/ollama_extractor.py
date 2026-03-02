@@ -50,7 +50,7 @@ class ESGExtractorOllama:
 [형식]
 {{"extracted": [
   {{"metric_id": "E01", "value": 12345.6, "unit": "tCO2eq",
-    "year": 2023, "confidence": 0.95,
+    "year": 2023, "confidence": <당신이 생각하는 0~1 사이의 신뢰도 점수>,
     "source_text": "원문에서 발췌한 근거 문장"}}
 ]}}
 

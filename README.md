@@ -141,7 +141,7 @@ and per-metric detail table.
 
 ## To-Do / Roadmap
 
-- [X] **Revise confidence scoring**
+- [X] ~~**Revise confidence scoring**~~
 
 - [ ] **Implement OCR-based PDF parser**: in case of scanned images or have image-embedded tables that `pdfplumber` cannot parse.
 
